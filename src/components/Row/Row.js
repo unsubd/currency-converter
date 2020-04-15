@@ -10,11 +10,12 @@ const row = (props) => {
                 {cur}
             </option>
         )
-    })
+    });
+
     return (
         <div className={styles.Row}>
-            <input/>
-            <select defaultValue={props.default}>
+            <input value={props.amount} type='number' onChange={props.amountChange}/>
+            <select defaultValue={props.default} onChange={props.change}>
                 {options}
             </select>
         </div>
