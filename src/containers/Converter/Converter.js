@@ -78,6 +78,27 @@ class Converter extends Component {
 
     }
 
+    toCurrencyChangeHandler = (event) => {
+        const options = event.target.options;
+        const selectedIndex = options.selectedIndex;
+        const selectedCurrency = options[selectedIndex].value;
+
+        axios.get('', {
+            params: {
+                symbols: selectedCurrency + ',' + this.state.fromCurrency,
+                base: this.state.fromCurrency
+            }
+        }).then(response => {
+            this.setState({
+                toCurrency: selectedCurrency,
+                fromAmount: response.data.rates[this.state.fromCurrency],
+                toAmount: response.data.rates[selectedCurrency],
+                rate: response.data.rates[selectedCurrency]
+            });
+        });
+
+    }
+
     render() {
         let content = (
             <div>
