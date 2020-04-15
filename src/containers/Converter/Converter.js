@@ -19,15 +19,17 @@ class Converter extends Component {
         axios.get('/')
             .then(response => {
                 const currencies = Object.keys(response.data.rates);
+                const fromCurrency = currencies[0];
+                const toCurrency = currencies[1];
                 this.setState({
                     loading: false,
                     currencies: currencies,
-                    fromCurrency: currencies[0],
-                    toCurrency: currencies[1]
+                    fromCurrency: fromCurrency,
+                    toCurrency: toCurrency
                 });
                 return {
-                    fromCurrency: currencies[0],
-                    toCurrency: currencies[1]
+                    fromCurrency: fromCurrency,
+                    toCurrency: toCurrency
                 };
             }).then(res => {
             axios.get('', {
